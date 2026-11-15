@@ -3,30 +3,47 @@
 
 @base = http://localhost:8080/api
 
-### Listar
-GET {{base}}/recursos
+### Listar actividades
+GET {{base}}/actividades
 
-### Crear
-POST {{base}}/recursos
+### Listar actividades por fecha
+GET {{base}}/actividades?fecha=2099-05-20
+
+### Crear actividad
+POST {{base}}/actividades
 Content-Type: application/json
 
 {
-  "campo1": "valor",
-  "campo2": "valor",
-  "campo3": "valor"
+  "nombre": "Yoga",
+  "fechaHora": "2099-05-20T18:00:00",
+  "cupo": 15
 }
 
-### Buscar por id
-GET {{base}}/recursos/1
+### Buscar actividad por id
+GET {{base}}/actividades/1
 
 ### Error de validación (400)
-POST {{base}}/recursos
+POST {{base}}/actividades
 Content-Type: application/json
 
-{ "campo1": "" }
+{
+  "nombre": "",
+  "fechaHora": "2099-05-20T18:00:00",
+  "cupo": 15
+}
 
-### Cambiar estado
-PATCH {{base}}/otro-recurso/1/estado
+### Modificar actividad
+PUT {{base}}/actividades/1
 Content-Type: application/json
 
-{ "estado": "OTRO_ESTADO" }
+{
+  "nombre": "Yoga avanzado",
+  "fechaHora": "2099-05-20T19:00:00",
+  "cupo": 20
+}
+
+### Listar inscripciones de una actividad
+GET {{base}}/actividades/1/inscripciones
+
+### Eliminar actividad
+DELETE {{base}}/actividades/1
